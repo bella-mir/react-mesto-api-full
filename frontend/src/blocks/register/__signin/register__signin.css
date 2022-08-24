@@ -1,0 +1,13 @@
+.register__signin {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0;
+  text-decoration: none;
+  color: white;
+}
+
+.register__signin:hover{
+  opacity: 0.8;
+}

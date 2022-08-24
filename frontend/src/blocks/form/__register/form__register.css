@@ -1,0 +1,10 @@
+.form__register{
+    height: 400px;
+}
+
+@media (max-width: 620px) {
+    .form__register{
+        height: 360px;
+    }
+  }
+  
