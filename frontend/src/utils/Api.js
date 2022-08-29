@@ -16,6 +16,7 @@ class Api {
   getInitialCards() {
     return fetch(this._baseUrl + "/cards", {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -24,6 +25,7 @@ class Api {
   postCard(data) {
     return fetch(this._baseUrl + "/cards", {
       method: "POST",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({ name: data.name, link: data.link }),
     }).then(this._checkResponse);
@@ -33,6 +35,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -41,6 +44,7 @@ class Api {
   getUserData() {
     return fetch(this._baseUrl + "/users/me", {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -49,6 +53,7 @@ class Api {
   setUserData(data) {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -61,6 +66,7 @@ class Api {
   setNewAvatar(data) {
     return fetch(this._baseUrl + `/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar,
@@ -72,6 +78,7 @@ class Api {
   setLikeCard(id) {
     return fetch(this._baseUrl + `/cards/likes/${id}`, {
       method: "PUT",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -80,15 +87,18 @@ class Api {
   deleteLikeCard(id) {
     return fetch(this._baseUrl + `/cards/likes/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then(this._checkResponse);
   }
 }
 
 const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-41",
+  url: "http://localhost:3001",
   headers: {
-    authorization: "bebc4145-001f-487f-8afd-8c22bbd3883b",
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Origin': '*',
+    // authorization: "bebc4145-001f-487f-8afd-8c22bbd3883b",
     "Content-Type": "application/json",
   },
 });
