@@ -1,8 +1,5 @@
 # Project:  "Mesto - React - FULL"  (Front-end + Back-end)
 
-<img src="src/images/mesto_icon.svg" alt="Logo" width="80" height="auto">
-
-
 ## Created as one of the [Yandex.Praktikum](https://praktikum.yandex.com/) Bootcamp projects
 
 The project is based on frontend part of [Mesto-React project](https://github.com/belka-mironova/mesto-react)
