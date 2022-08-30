@@ -86,7 +86,7 @@ class Api {
 }
 
 const api = new Api({
-  url: "http://localhost:3001",
+  url: "https://api.mesto.bellamir.nomoredomains.sbs",
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
