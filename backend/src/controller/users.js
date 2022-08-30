@@ -11,7 +11,7 @@ const {
 
 const getUsers = (req, res, next) => {
   User.find({})
-    .then((users) => res.header('Access-Control-Allow-Credentials', true).send({ data: users }))
+    .then((users) => res.send({ data: users }))
     .catch(next);
 };
 const getUserById = (req, res, next) => {
@@ -20,7 +20,7 @@ const getUserById = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError(`There is no user with id ${req.params.id}`);
     })
-    .then((user) => res.header('Access-Control-Allow-Credentials', true).send({ data: user }))
+    .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new RequestError('Data is not valid or Bad request'));
@@ -40,7 +40,7 @@ const createUser = (req, res, next) => {
       name, about, avatar, email, password: hash,
     }))
     .then((user) => User.findOne({ _id: user._id }))
-    .then((user) => res.header('Access-Control-Allow-Credentials', true).send(user))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.code === 11000) {
         next(new ConflictError('User with this email already exists'));
@@ -62,7 +62,7 @@ const updateProfile = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError(`There is no user with id ${req.params.id}`);
     })
-    .then((user) => res.header('Access-Control-Allow-Credentials', true).send({ data: user }))
+    .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new RequestError('Data is not valid or Bad request'));
@@ -82,7 +82,7 @@ const updateAvatar = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError(`There is no user with id ${req.params.id}`);
     })
-    .then((user) => res.header('Access-Control-Allow-Credentials', true).send({ data: user }))
+    .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new RequestError('Data is not valid or Bad request'));
@@ -107,9 +107,8 @@ const login = (req, res, next) => {
             throw new UnauthorizedError('Email or password are incorrect');
           }
           const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-          res.status(200).header('Access-Control-Allow-Credentials', true).send({ token });
-        })
-        .header('Access-Control-Allow-Credentials', true);
+          res.status(200).send({ token });
+        });
     })
     .catch(next);
 };
@@ -119,7 +118,7 @@ const getUserInfo = (req, res, next) => {
     .orFail(() => {
       throw new NotFoundError(`There is no user with ${req.params.id}`);
     })
-    .then((user) => res.header('Access-Control-Allow-Credentials', true).send({ data: user }))
+    .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new RequestError('Data is not valid or Bad request'));

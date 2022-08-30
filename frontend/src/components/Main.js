@@ -53,15 +53,17 @@ function Main(props) {
         </button>
       </section>
       <section className="places">
-        {props.cards.map((card) => (
-          <Card
-            key={card._id}
-            card={card}
-            onCardClick={props.onCardClick}
-            onCardLike={props.handleCardLike}
-            onCardDelete={props.handleCardDelete}
-          />
-        ))}
+        {props.cards.length>0
+          ? props.cards.map((card) => (
+              <Card
+                key={card._id}
+                card={card}
+                onCardClick={props.onCardClick}
+                onCardLike={props.handleCardLike}
+                onCardDelete={props.handleCardDelete}
+              />
+            ))
+          : null}
       </section>
     </main>
   );

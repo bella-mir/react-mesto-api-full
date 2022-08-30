@@ -45,17 +45,17 @@ function App() {
     api
       .getInitialCards()
       .then((data) => {
-        setCards(data);
+        setCards(data.data);
       })
       .catch((err) => console.error(err));
 
     api
       .getUserData()
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [currentUser.name, currentUser.about, cards]);
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
@@ -114,13 +114,13 @@ function App() {
   };
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes? (card.likes.some((i) => i === currentUser._id)) : (false);
     if (!isLiked) {
       api
         .setLikeCard(card._id)
         .then((newCard) => {
           setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+            state.map((c) => (c === card._id ? newCard : c))
           );
         })
         .catch((err) => console.error(err));
@@ -129,7 +129,7 @@ function App() {
         .deleteLikeCard(card._id)
         .then((newCard) => {
           setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+            state.map((c) => (c === card._id ? newCard : c))
           );
         })
         .catch((err) => console.error(err));

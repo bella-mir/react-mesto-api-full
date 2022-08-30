@@ -7,9 +7,7 @@ const checkResponse = (res) => {
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/sign-up`, {
     method: 'POST',
-    credentials: 'include',
     headers: {
-      'Access-Control-Allow-Credentials': 'true',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -21,12 +19,10 @@ export const register = (email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${BASE_URL}/sign-in`, {
     method: 'POST',
-    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': 'true',
     },
     body: JSON.stringify({
       email: email,
@@ -38,10 +34,8 @@ export const authorize = (email, password) => {
 export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
-    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': 'true',
       Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);

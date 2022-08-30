@@ -4,13 +4,13 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const isOwn = card.owner._id === currentUser._id;
+  const isOwn = card.owner === currentUser._id;
 
   const cardDeleteButtonClassName = `place__remove ${
     isOwn ? "" : "place__remove_hidden"
   }`;
 
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes? (card.likes.some((i) => i === currentUser._id)) : (false);
 
   const cardLikeButtonClassName = `place__like ${
     isLiked ? "place__like_active" : ""
@@ -49,7 +49,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
             className={cardLikeButtonClassName}
             onClick={handleLikeClick}
           ></button>
-          <span className="place__like-count">{card.likes.length}</span>
+          <span className="place__like-count">{card.likes ? card.likes.length : 0}</span>
         </div>
       </div>
     </article>
