@@ -1,6 +1,5 @@
 {
   "name": "mesto-react",
-  "homepage": "http://belka-mironova.github.io/react-mesto-auth",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

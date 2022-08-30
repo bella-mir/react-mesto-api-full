@@ -22,7 +22,7 @@ function EditProfilePopup(props) {
     e.preventDefault();
     props.onUpdateUser({
       name,
-      about,
+      about
     });
   };
 
@@ -43,7 +43,7 @@ function EditProfilePopup(props) {
         required
         minLength="2"
         maxLength="40"
-        onChange={controlInput.handleChange}
+        x={controlInput.handleChange}
         value={controlInput?.values?.name || ''}
       />
       <span className="form__error" id="name2-error"></span>
@@ -51,7 +51,7 @@ function EditProfilePopup(props) {
         className="form__input"
         type="text"
         id="occupation"
-        name="description"
+        name="about"
         placeholder="Профессия"
         required
         minLength="2"
