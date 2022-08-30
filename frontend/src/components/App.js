@@ -92,7 +92,7 @@ function App() {
 
   const handleRegister = (email, password) => {
     auth
-      .register(password, email)
+      .register(email, password)
       .then((data) => {
         setRegisterInfo(true);
         navigate("/sign-in");
