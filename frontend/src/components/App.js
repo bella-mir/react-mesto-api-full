@@ -153,7 +153,7 @@ function App() {
     api
       .postCard(data)
       .then((data) => {
-        setCards([data, ...cards]);
+        setCards([data.data, ...cards]);
         closeAllPopups();
       })
       .catch((err) => console.error(err));
