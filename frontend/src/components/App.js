@@ -55,7 +55,7 @@ function App() {
         setCurrentUser(data.data);
       })
       .catch((err) => console.error(err));
-  }, [currentUser.name, currentUser.about, cards]);
+  }, []);
 
   const tokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
@@ -120,7 +120,7 @@ function App() {
         .setLikeCard(card._id)
         .then((newCard) => {
           setCards((state) =>
-            state.map((c) => (c === card._id ? newCard : c))
+            state.map((c) => (c._id === card._id ? newCard.data : c))
           );
         })
         .catch((err) => console.error(err));
@@ -129,7 +129,7 @@ function App() {
         .deleteLikeCard(card._id)
         .then((newCard) => {
           setCards((state) =>
-            state.map((c) => (c === card._id ? newCard : c))
+            state.map((c) => (c._id === card._id ? newCard.data : c))
           );
         })
         .catch((err) => console.error(err));
@@ -208,7 +208,7 @@ function App() {
     api
       .setUserData(data)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch((err) => console.error(err));
@@ -218,7 +218,7 @@ function App() {
     api
       .setNewAvatar(data)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch((err) => console.error(err));

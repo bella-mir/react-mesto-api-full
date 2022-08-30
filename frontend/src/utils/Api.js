@@ -89,7 +89,6 @@ const api = new Api({
   url: "http://localhost:3001",
   headers: {
     "Access-Control-Allow-Origin": "*",
-    // authorization: "bebc4145-001f-487f-8afd-8c22bbd3883b",
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("jwt")}`,
   },
