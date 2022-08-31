@@ -7,7 +7,7 @@
 [Backend Domain](https://api.mesto.bellamir.nomoredomains.sbs)
 
 
-Public IP-address: 51.250.69.75
+Public IP-address: 51.250.93.32
 
 Repository for the application `Mesto` project, including the front-end and back-end parts with the following features: authorization and registration of users, operations with cards and users. 
 
