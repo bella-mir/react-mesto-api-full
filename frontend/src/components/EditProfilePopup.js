@@ -43,7 +43,7 @@ function EditProfilePopup(props) {
         required
         minLength="2"
         maxLength="40"
-        x={controlInput.handleChange}
+        onChange={controlInput.handleChange}
         value={controlInput?.values?.name || ''}
       />
       <span className="form__error" id="name2-error"></span>
