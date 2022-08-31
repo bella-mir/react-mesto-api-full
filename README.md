@@ -2,7 +2,7 @@
 
 ## Created as one of the [Yandex.Praktikum](https://praktikum.yandex.com/) Bootcamp projects
 
-The project is based on frontend part of [Mesto-React project](https://github.com/belka-mironova/mesto-react)
+[You can view the project here](https://mesto.bellamir.nomoredomains.sbs)
 
 Repository for the application `Mesto` project, including the front-end and back-end parts with the following features: authorization and registration of users, operations with cards and users. 
 
