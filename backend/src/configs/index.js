@@ -1,10 +1,12 @@
 require('dotenv').config();
 
-const { JWT_SECRET = 'eb28135ebcfc17578f96d4d65b6c7871f2c803be4180c165061d5c2db621c51b' } = process.env;
-
+const { PORT = 3001, JWT_SECRET = 'f7585a14c9e90b0058253652d000dbf34029c94925d6e9dc8286ff326823d2d5' } = process.env;
 const SALT_ROUND = 10;
+const DATABASE_URL = 'mongodb://127.0.0.1:27017/mestodb';
 
 module.exports = {
   SALT_ROUND,
   JWT_SECRET,
+  PORT,
+  DATABASE_URL,
 };

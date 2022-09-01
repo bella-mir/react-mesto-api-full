@@ -5,6 +5,7 @@ const { errors } = require('celebrate');
 const errorHandler = require('./src/utils/errorHandler');
 const routes = require('./src/routes');
 const { requestLogger, errorLogger } = require('./src/middlewares/logger');
+const { PORT, DATABASE_URL } = require('./src/configs');
 
 const app = express();
 
@@ -21,7 +22,5 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-const { PORT = 3001 } = process.env;
-
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
+mongoose.connect(DATABASE_URL);
 app.listen(PORT);

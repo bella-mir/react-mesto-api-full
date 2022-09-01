@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const { SALT_ROUND, JWT_SECRET } = require('../configs/index');
+const { SALT_ROUND, JWT_SECRET, JWT_STORAGE_TIME } = require('../configs/index');
 const {
   ConflictError,
   NotFoundError,
@@ -106,7 +106,7 @@ const login = (req, res, next) => {
           if (!matched) {
             throw new UnauthorizedError('Email or password are incorrect');
           }
-          const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+          const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: JWT_STORAGE_TIME });
           res.status(200).send({ token });
         });
     })
