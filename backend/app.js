@@ -19,6 +19,12 @@ app.use(routes);
 
 app.use(errorLogger);
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Server crash');
+  }, 0);
+});
+
 app.use(errors());
 app.use(errorHandler);
 
