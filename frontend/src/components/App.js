@@ -32,29 +32,27 @@ function App() {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    tokenCheck();
-  }, []);
-
-  useEffect(() => {
     if (isLoggedIn) {
+      api
+        .getUserData()
+        .then((data) => {
+          setCurrentUser(data.data);
+        })
+        .catch((err) => console.error(err));
+
+      api
+        .getInitialCards()
+        .then((data) => {
+          setCards(data.data);
+        })
+        .catch((err) => console.error(err));
+
       navigate("/");
     }
   }, [isLoggedIn]);
 
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((data) => {
-        setCards(data.data);
-      })
-      .catch((err) => console.error(err));
-
-    api
-      .getUserData()
-      .then((data) => {
-        setCurrentUser(data.data);
-      })
-      .catch((err) => console.error(err));
+    tokenCheck();
   }, []);
 
   const tokenCheck = () => {
@@ -114,7 +112,9 @@ function App() {
   };
 
   function handleCardLike(card) {
-    const isLiked = card.likes? (card.likes.some((i) => i === currentUser._id)) : (false);
+    const isLiked = card.likes
+      ? card.likes.some((i) => i === currentUser._id)
+      : false;
     if (!isLiked) {
       api
         .setLikeCard(card._id)
