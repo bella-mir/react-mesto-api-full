@@ -12,11 +12,16 @@ class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
+  _authHeader() {
+    const jwt = localStorage.getItem("jwt");
+    return jwt ? { Authorization: `Bearer ${jwt}` } : null;
+  }
+
   //получить карточки с сервера (GET)
   getInitialCards() {
     return fetch(this._baseUrl + "/cards", {
       method: "GET",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
     }).then(this._checkResponse);
   }
 
@@ -24,7 +29,7 @@ class Api {
   postCard(data) {
     return fetch(this._baseUrl + "/cards", {
       method: "POST",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
       body: JSON.stringify({ name: data.name, link: data.link }),
     }).then(this._checkResponse);
   }
@@ -33,7 +38,7 @@ class Api {
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
     }).then(this._checkResponse);
   }
 
@@ -41,7 +46,7 @@ class Api {
   getUserData() {
     return fetch(this._baseUrl + "/users/me", {
       method: "GET",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
     }).then(this._checkResponse);
   }
 
@@ -49,7 +54,7 @@ class Api {
   setUserData(data) {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -61,7 +66,7 @@ class Api {
   setNewAvatar(data) {
     return fetch(this._baseUrl + `/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
       body: JSON.stringify({
         avatar: data.avatar,
       }),
@@ -72,7 +77,7 @@ class Api {
   setLikeCard(id) {
     return fetch(this._baseUrl + `/cards/${id}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
     }).then(this._checkResponse);
   }
 
@@ -80,7 +85,7 @@ class Api {
   deleteLikeCard(id) {
     return fetch(this._baseUrl + `/cards/${id}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: { ...this._headers, ...this._authHeader() },
     }).then(this._checkResponse);
   }
 }
@@ -90,7 +95,6 @@ const api = new Api({
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
-    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
   },
 });
 
