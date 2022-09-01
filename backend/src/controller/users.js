@@ -9,8 +9,6 @@ const {
   RequestError,
 } = require('../errors');
 
-const { NODE_ENV } = process.env;
-
 const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send({ data: users }))
@@ -108,11 +106,7 @@ const login = (req, res, next) => {
           if (!matched) {
             throw new UnauthorizedError('Email or password are incorrect');
           }
-          // const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-          const token = jwt.sign(
-            { _id: user._id },
-            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-          );
+          const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
           res.status(200).send({ token });
         });
     })
