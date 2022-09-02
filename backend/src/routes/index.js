@@ -9,12 +9,6 @@ const { validateUserBody, validateAuthentication } = require('../middlewares/val
 router.post('/sign-up', validateUserBody, createUser);
 router.post('/sign-in', validateAuthentication, login);
 
-router.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Server crash');
-  }, 0);
-});
-
 router.use(auth);
 router.use('/users', userRoutes);
 router.use('/cards', cardRoutes);
