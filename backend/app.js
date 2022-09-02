@@ -15,15 +15,15 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.use(routes);
-
-app.use(errorLogger);
-
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Server crash');
   }, 0);
 });
+
+app.use(routes);
+
+app.use(errorLogger);
 
 app.use(errors());
 app.use(errorHandler);
