@@ -21,7 +21,7 @@ Repository for the application `Mesto` project, including the front-end and back
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/belka-mironova/react-mesto-api-full.git
+   git clone https://github.com/bella-mir/react-mesto-api-full.git
    ```
 2. Install NPM packages
    ```sh
